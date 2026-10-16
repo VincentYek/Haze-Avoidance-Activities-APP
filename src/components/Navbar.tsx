@@ -1,7 +1,7 @@
 import React from 'react';
-import { Home, ShieldAlert, Compass, ShoppingBag, Stethoscope, BookOpen, UtensilsCrossed } from 'lucide-react';
+import { Home, ShieldAlert, Compass, ShoppingBag, Stethoscope, BookOpen, UtensilsCrossed, Moon } from 'lucide-react';
 
-export type AppTab = 'overview' | 'live' | 'itinerary' | 'eateries' | 'supplies' | 'health' | 'education';
+export type AppTab = 'overview' | 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'supplies' | 'health' | 'education';
 
 interface NavbarProps {
   activeTab: AppTab;
@@ -73,6 +73,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Best Eateries
+          </button>
+          <button
+            onClick={() => onSelectTab('nightlife')}
+            className={`whitespace-nowrap shrink-0 transition-colors ${
+              activeTab === 'nightlife'
+                ? 'text-slate-950 font-semibold underline underline-offset-8 decoration-2 decoration-slate-900'
+                : 'hover:text-slate-900'
+            }`}
+          >
+            Indoor Nightlife
           </button>
           <button
             onClick={() => onSelectTab('supplies')}
@@ -158,6 +168,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <UtensilsCrossed className="w-3.5 h-3.5" />
           <span>Eateries</span>
+        </button>
+        <button
+          onClick={() => onSelectTab('nightlife')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap ${
+            activeTab === 'nightlife' ? 'bg-slate-900 text-white font-semibold' : 'text-slate-600 bg-white border border-slate-200'
+          }`}
+        >
+          <Moon className="w-3.5 h-3.5" />
+          <span>Nightlife</span>
         </button>
         <button
           onClick={() => onSelectTab('supplies')}

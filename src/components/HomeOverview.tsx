@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   AlertTriangle,
   UtensilsCrossed,
+  Moon,
 } from 'lucide-react';
 import { RegionalPsiData, SingaporeRegion } from '../types/haze';
 import { IMAGES, ITINERARY_SUBSTITUTIONS } from '../data/hazeData';
@@ -26,7 +27,7 @@ interface HomeOverviewProps {
   allRegionsData: Record<SingaporeRegion, RegionalPsiData>;
   selectedRegion: SingaporeRegion;
   onSelectRegion: (region: SingaporeRegion) => void;
-  onNavigateToTab: (tab: 'live' | 'itinerary' | 'eateries' | 'supplies' | 'health' | 'education') => void;
+  onNavigateToTab: (tab: 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'supplies' | 'health' | 'education') => void;
   userLocation: LocationMatchResult | null;
   onSetUserLocation: (loc: LocationMatchResult | null) => void;
 }
@@ -265,12 +266,20 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
               </span>
             ))}
           </div>
-          <div className="pt-2">
+          <div className="pt-2 flex flex-wrap items-center gap-3">
             <button
               onClick={() => onNavigateToTab('eateries')}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-colors shadow-sm"
             >
-              <span>Explore All 35 Curated Eateries</span>
+              <span>Explore 35 Curated Eateries</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => onNavigateToTab('nightlife')}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition-colors shadow-sm"
+            >
+              <Moon className="w-3.5 h-3.5" />
+              <span>Explore 18 Indoor Nightspots</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
