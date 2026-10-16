@@ -10,6 +10,7 @@ import { LiveHazeMonitor } from './components/LiveHazeMonitor';
 import { ItinerarySubstitutionEngine } from './components/ItinerarySubstitutionEngine';
 import { SingaporeEateriesGuide } from './components/SingaporeEateriesGuide';
 import { SingaporeNightlifeGuide } from './components/SingaporeNightlifeGuide';
+import { TalkToUsForum } from './components/TalkToUsForum';
 import { WhatToBuyGuide } from './components/WhatToBuyGuide';
 import { SymptomAndHelpCenter } from './components/SymptomAndHelpCenter';
 import { HazeEducationGuide } from './components/HazeEducationGuide';
@@ -152,6 +153,8 @@ export default function App() {
             onNavigateToTab={(tab) => setActiveTab(tab as any)}
           />
         )}
+
+        {activeTab === 'talk' && <TalkToUsForum />}
 
         {activeTab === 'supplies' && <WhatToBuyGuide />}
 

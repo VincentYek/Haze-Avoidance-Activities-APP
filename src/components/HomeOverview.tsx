@@ -27,7 +27,7 @@ interface HomeOverviewProps {
   allRegionsData: Record<SingaporeRegion, RegionalPsiData>;
   selectedRegion: SingaporeRegion;
   onSelectRegion: (region: SingaporeRegion) => void;
-  onNavigateToTab: (tab: 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'supplies' | 'health' | 'education') => void;
+  onNavigateToTab: (tab: 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'talk' | 'supplies' | 'health' | 'education') => void;
   userLocation: LocationMatchResult | null;
   onSetUserLocation: (loc: LocationMatchResult | null) => void;
 }

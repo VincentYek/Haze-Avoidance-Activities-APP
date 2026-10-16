@@ -2,7 +2,7 @@ import React from 'react';
 import { ShieldCheck, Phone } from 'lucide-react';
 
 export const Footer: React.FC<{
-  onSelectTab: (tab: 'overview' | 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'supplies' | 'health' | 'education') => void;
+  onSelectTab: (tab: 'overview' | 'live' | 'itinerary' | 'eateries' | 'nightlife' | 'talk' | 'supplies' | 'health' | 'education') => void;
 }> = ({ onSelectTab }) => {
   return (
     <footer className="bg-white border-t border-slate-200 mt-16 text-xs text-slate-500">
@@ -63,6 +63,14 @@ export const Footer: React.FC<{
                   className="hover:text-slate-900 transition-colors font-medium text-slate-800"
                 >
                   Indoor Nightspots & Speakeasies
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectTab('talk')}
+                  className="hover:text-slate-900 transition-colors font-medium text-slate-800"
+                >
+                  Talk to Us (Disqus Forum)
                 </button>
               </li>
               <li>
