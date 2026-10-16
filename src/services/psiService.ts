@@ -33,28 +33,45 @@ export async function fetchLiveSingaporePsi(): Promise<{
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-    const response = await fetch('https://api.data.gov.sg/v1/environment/psi', {
-      signal: controller.signal,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
+    let json: any = null;
+    try {
+      const localRes = await fetch('/api/psi', {
+        signal: controller.signal,
+        headers: { Accept: 'application/json' },
+      });
+      if (localRes.ok) {
+        json = await localRes.json();
+      }
+    } catch {
+      // Local proxy failed or not available, fallback to direct upstream
+    }
+
+    if (!json || (!json.items && !json.data?.items)) {
+      const response = await fetch('https://api.data.gov.sg/v1/environment/psi', {
+        signal: controller.signal,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Data.gov.sg API returned status ${response.status}`);
+      }
+
+      json = await response.json();
+    }
 
     clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      throw new Error(`Data.gov.sg API returned status ${response.status}`);
-    }
-
-    const json: PsiApiResponse = await response.json();
-    const latestItem = json.items?.[0];
+    const items = json.items || json.data?.items;
+    const latestItem = items?.[0];
 
     if (!latestItem || !latestItem.readings) {
       throw new Error('Invalid format from PSI feed');
     }
 
     const psi24 = latestItem.readings.psi_twenty_four_hourly || {};
-    const pm25OneHr = latestItem.readings.pm25_one_hourly || {};
+    const pm25OneHr = latestItem.readings.pm25_one_hourly || latestItem.readings.pm25_twenty_four_hourly || {};
 
     const formattedTime = new Date(latestItem.update_timestamp || latestItem.timestamp).toLocaleTimeString('en-SG', {
       hour: '2-digit',

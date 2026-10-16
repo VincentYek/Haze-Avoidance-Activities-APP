@@ -1,7 +1,7 @@
 import React from 'react';
-import { Home, ShieldAlert, Compass, ShoppingBag, Stethoscope, BookOpen } from 'lucide-react';
+import { Home, ShieldAlert, Compass, ShoppingBag, Stethoscope, BookOpen, UtensilsCrossed } from 'lucide-react';
 
-export type AppTab = 'overview' | 'live' | 'itinerary' | 'supplies' | 'health' | 'education';
+export type AppTab = 'overview' | 'live' | 'itinerary' | 'eateries' | 'supplies' | 'health' | 'education';
 
 interface NavbarProps {
   activeTab: AppTab;
@@ -63,6 +63,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Itinerary Swap
+          </button>
+          <button
+            onClick={() => onSelectTab('eateries')}
+            className={`whitespace-nowrap shrink-0 transition-colors ${
+              activeTab === 'eateries'
+                ? 'text-slate-950 font-semibold underline underline-offset-8 decoration-2 decoration-slate-900'
+                : 'hover:text-slate-900'
+            }`}
+          >
+            Best Eateries
           </button>
           <button
             onClick={() => onSelectTab('supplies')}
@@ -139,6 +149,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <Compass className="w-3.5 h-3.5" />
           <span>Swap</span>
+        </button>
+        <button
+          onClick={() => onSelectTab('eateries')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap ${
+            activeTab === 'eateries' ? 'bg-slate-900 text-white font-semibold' : 'text-slate-600 bg-white border border-slate-200'
+          }`}
+        >
+          <UtensilsCrossed className="w-3.5 h-3.5" />
+          <span>Eateries</span>
         </button>
         <button
           onClick={() => onSelectTab('supplies')}

@@ -14,6 +14,7 @@ import {
   Activity,
   CheckCircle2,
   AlertTriangle,
+  UtensilsCrossed,
 } from 'lucide-react';
 import { RegionalPsiData, SingaporeRegion } from '../types/haze';
 import { IMAGES, ITINERARY_SUBSTITUTIONS } from '../data/hazeData';
@@ -25,7 +26,7 @@ interface HomeOverviewProps {
   allRegionsData: Record<SingaporeRegion, RegionalPsiData>;
   selectedRegion: SingaporeRegion;
   onSelectRegion: (region: SingaporeRegion) => void;
-  onNavigateToTab: (tab: 'live' | 'itinerary' | 'supplies' | 'health' | 'education') => void;
+  onNavigateToTab: (tab: 'live' | 'itinerary' | 'eateries' | 'supplies' | 'health' | 'education') => void;
   userLocation: LocationMatchResult | null;
   onSetUserLocation: (loc: LocationMatchResult | null) => void;
 }
@@ -242,6 +243,38 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({
           userLocationName={userLocation?.matchedName}
           userCoordinates={userLocation?.coordinates}
         />
+      </section>
+
+      {/* Featured Banner: Best Singapore Eateries across 7 Cuisines */}
+      <section className="bg-gradient-to-r from-amber-950/80 via-slate-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white border border-amber-500/20 shadow-sm relative overflow-hidden">
+        <div className="max-w-3xl space-y-3 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold tracking-wide border border-amber-400/30">
+            <UtensilsCrossed className="w-3.5 h-3.5" />
+            <span>Singapore Foodie Trail · 7 Cuisines & Sheltered Hubs</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+            Find the Best Eateries in Singapore (Italian, Japanese, Korean, Local & More)
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            From Michelin Bib Gourmand chicken rice and century-old Malay murtabak to Edomae sushi in ION Orchard, authentic Korean BBQ in Tanjong Pagar, and handcrafted Roman pasta, explore 35 curated dining spots categorized with verified indoor air filtration and sheltered MRT access.
+          </p>
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            {['Singapore Local', 'Italian', 'Japanese', 'Korean', 'Chinese', 'Malay', 'Indian'].map((cuisine) => (
+              <span key={cuisine} className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white/10 text-amber-200 border border-white/10">
+                {cuisine}
+              </span>
+            ))}
+          </div>
+          <div className="pt-2">
+            <button
+              onClick={() => onNavigateToTab('eateries')}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-colors shadow-sm"
+            >
+              <span>Explore All 35 Curated Eateries</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* 3. Four Core Highlight Pillars (Highlighting Each Tab) */}

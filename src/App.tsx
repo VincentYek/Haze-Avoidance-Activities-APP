@@ -8,6 +8,7 @@ import { Navbar, AppTab } from './components/Navbar';
 import { HomeOverview } from './components/HomeOverview';
 import { LiveHazeMonitor } from './components/LiveHazeMonitor';
 import { ItinerarySubstitutionEngine } from './components/ItinerarySubstitutionEngine';
+import { SingaporeEateriesGuide } from './components/SingaporeEateriesGuide';
 import { WhatToBuyGuide } from './components/WhatToBuyGuide';
 import { SymptomAndHelpCenter } from './components/SymptomAndHelpCenter';
 import { HazeEducationGuide } from './components/HazeEducationGuide';
@@ -136,6 +137,13 @@ export default function App() {
         )}
 
         {activeTab === 'itinerary' && <ItinerarySubstitutionEngine />}
+
+        {activeTab === 'eateries' && (
+          <SingaporeEateriesGuide
+            currentPsi={effectivePsi}
+            onNavigateToTab={(tab) => setActiveTab(tab as any)}
+          />
+        )}
 
         {activeTab === 'supplies' && <WhatToBuyGuide />}
 

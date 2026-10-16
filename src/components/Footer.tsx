@@ -2,7 +2,7 @@ import React from 'react';
 import { ShieldCheck, Phone } from 'lucide-react';
 
 export const Footer: React.FC<{
-  onSelectTab: (tab: 'overview' | 'live' | 'itinerary' | 'supplies' | 'health' | 'education') => void;
+  onSelectTab: (tab: 'overview' | 'live' | 'itinerary' | 'eateries' | 'supplies' | 'health' | 'education') => void;
 }> = ({ onSelectTab }) => {
   return (
     <footer className="bg-white border-t border-slate-200 mt-16 text-xs text-slate-500">
@@ -47,6 +47,14 @@ export const Footer: React.FC<{
                   className="hover:text-slate-900 transition-colors"
                 >
                   Indoor Itinerary Substitution
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectTab('eateries')}
+                  className="hover:text-slate-900 transition-colors font-medium text-slate-800"
+                >
+                  Best Singapore Eateries (7 Cuisines)
                 </button>
               </li>
               <li>
